@@ -13,3 +13,5 @@ pictures/stemverse.mov
 # Local test artifacts
 .playwright-mcp/
 *.log
+
+.vercel

@@ -1,0 +1,7 @@
+# Original hero video — 120MB HEVC .mov, unused (the site plays stemverse.mp4).
+# Exceeds Vercel's 100MB per-file limit, so it is excluded from deploys.
+pictures/stemverse.mov
+
+# OS cruft
+.DS_Store
+**/.DS_Store
