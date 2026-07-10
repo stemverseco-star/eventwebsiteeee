@@ -1,0 +1,1594 @@
+/* 1. COLOR VARIABLES & SETUP */
+:root {
+    /* Background & Main Colors */
+    --cream-bg: #ffffff;
+    --dark-slate-nav: #1a3e6c;
+    /* Sky & Warm Tones */
+    --peach-sky: #FFB88C;
+    --cloud-warm: #FFFDD0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: black;
+    overflow-x: hidden;
+    width: 100%;
+    overflow-x: hidden; /* This hides anything that tries to push outside */
+    margin: 0;
+    padding: 0;
+} 
+
+/* 5. FOOTER (Partners Bar) */
+.partners-footer {
+    background: var(--dark-slate-nav);
+    color: #ffffff;
+    padding: 30px;
+    text-align: center;
+    border-top: 3px solid #f7BA06;
+    margin-top: 50px;
+}
+
+.footer-label {
+    display: block;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 20px;
+    color: var(--lavender);
+}
+/* TEAM CAROUSEL CONTAINER */
+.team-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.team-track {
+    position: relative;
+    width: 350px; /* Fixed width for the card */
+    height: 500px;
+    overflow: hidden;
+}
+
+/* INDIVIDUAL TEAM CARD */
+.team-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.team-card.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 2;
+}
+.team-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    gap: 30px; /* Space for the buttons */
+}
+
+.team-track {
+    width: 350px; /* Width of one card */
+    height: 550px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+/* Update your 'team-card' class in home-info-style.css */
+
+.team-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    /* THE NEW PREMIUM BOX STYLES */
+    background: rgba(255, 255, 255, 0.05); /* Slight white transparent fill */
+    backdrop-filter: blur(15px);         /* The Glassmorphism blur effect */
+    border: 4px solid #003c71;   /* A defined outline using your palette */
+    border-radius: 40px;                 /* Matches your other glass cards */
+    padding: 30px;                       /* Internal spacing for the content */
+    box-shadow: 0 15px 40px rgba(106, 90, 205, 0.2); /* Soft shadow for depth */
+
+    /* The mechanism to hide/show remains */
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    pointer-events: none;
+    
+    /* Layout control */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* The Active State (remains the same) */
+.team-card.active {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+/* Let's refine the image and text spacing too so they sit well in the box */
+
+.member-img {
+    width: 250px;       /* Fixed size inside the box */
+    height: 250px;
+    border-radius: 25px; /* Matches photo rounding from your image */
+    overflow: hidden;
+    margin-bottom: 25px; /* Spacing below photo */
+    
+    /* OPTIONAL: A direct glow box behind the photo itself */
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3); /* Sublte Cyan Glow */
+}
+
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: var(--dark-slate-nav);
+}
+
+.role {
+    color: var(--electric-purple); /* Using your branding purple for the title */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* IMAGE AREA */
+.member-img {
+    height: 65%;
+    width: 100%;
+}
+
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* INFO AREA (The Colorful Label) */
+.member-info {
+    padding: 20px;
+    text-align: center;
+    background: var(--cream-bg);
+    flex-grow: 1;
+    border-top: 5px solid var(--sunset-orange); /* Matching your pic */
+}
+
+.member-info h3 {
+    margin: 0;
+    color: var(--dark-slate-nav);
+    font-size: 22px;
+}
+
+.role {
+    color: var(--sunset-orange);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.member-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* NAVIGATION BUTTONS */
+.carousel-btn {
+    background: #003c71;
+    color: #ffffff;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    background:#003c71;
+    color: var(--dark-slate-nav);
+}
+/* The dark bar stays still */
+.partners-footer {
+    background: var(--dark-slate-nav);
+    padding: 30px 0;
+    width: 100%;
+    overflow: hidden; /* This hides logos as they exit the screen */
+    border-top: 3px solid var(--electric-purple);
+    text-align: center;
+}
+
+.footer-label {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: 8px;
+    color: var(--lavender);
+}
+
+/* The window through which logos move */
+.logo-slider {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+/* THE MOVING PART */
+.logo-track {
+    display: flex;
+    /* Adjust width based on: (Number of logos * (width + margin)) */
+    width: calc(200px * 10); 
+    animation: slideLogos 50s linear infinite;
+}
+
+.logo-track img {
+    /* 1. SIZE CONTROL */
+    width: 120px;            /* The base size of your circles */
+    height: 120px;           /* Height MUST match width for the circle */
+    flex-shrink: 0;          /* Prevents the browser from squishing the circles */
+    aspect-ratio: 1 / 1;     /* Forces a perfect square before rounding */
+
+    /* 2. IMAGE ADJUSTMENT */
+    object-fit: contain;     /* 'contain' keeps the whole logo visible inside the circle */
+    padding: 15px;           /* Adds 'breathing room' so the logo doesn't touch the edges */
+    background-color: white; /* Provides a clean background for transparent logos */
+    
+    /* 3. THE CIRCLE SHAPE */
+    border-radius: 50%;      
+    border: 3px solid #f7BA06; 
+    
+    /* 4. ANIMATION & EFFECTS */
+    margin: 0 30px;
+    opacity: 0.9;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.logo-track img:hover {
+    transform: scale(1.1);
+    border-color: var(--neon-cyan);
+    opacity: 1;
+}
+
+/* THE MECHANISM */
+@keyframes slideLogos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* This moves the track by exactly half its total width */
+        transform: translateX(calc(-200px * 5));
+    }
+}
+
+
+
+
+
+/* Container Section */
+.services-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+   align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Header */
+.services-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.services-header h2 {
+  font-size: 2.5rem;
+  color: #1e3a8a;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.services-header p {
+  font-size: 1.15rem;
+  color: #64748b;
+}
+
+/* Grid Layout */
+.services-grid {
+  display: grid;
+  /* Two columns on desktop, stacks to one column when cards can't fit */
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 30px;
+}
+
+/* Card Styling & Hover Effect */
+.service-card {
+  border-radius: 24px;
+  padding: 40px;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  
+  /* Handles the smooth pop-forward transition */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Coming Forward Effect */
+.service-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Title and Text Content */
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.service-card .icon {
+  font-size: 1.6rem;
+}
+
+.service-card h3 {
+  font-size: 1.45rem;
+  color: #1e3a8a;
+  font-weight: 600;
+  margin: 0;
+}
+
+.service-card p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+/* Card Theme Variations */
+.service-card.young-learners {
+  background: linear-gradient(180deg, #eef5ff 0%, #ffffff 100%);
+  border: 1px solid #e2eefc;
+}
+
+.service-card.teenagers {
+  background: linear-gradient(180deg, #f7f1ff 0%, #ffffff 100%);
+  border: 1px solid #f0e5fc;
+}
+
+.service-card.educators {
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+  border: 1px solid #dcfce7;
+}
+
+.service-card.adults {
+  background: linear-gradient(180deg, #fffafd 0%, #fff7ed 100%);
+  border: 1px solid #ffedd5;
+}
+/* Full-Width Banner */
+.camp-banner {
+  width: 100%; /* 100vw includes the scrollbar and causes horizontal overflow */
+  background-color: #104582;
+  padding: 60px 20px;
+  margin: 40px 0;
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.explore{ 
+    color: white; 
+  text-align: center; 
+  margin-bottom: 30px; 
+  
+  /* Increase font size */
+  font-size: 3rem; 
+  
+  /* Use a font that looks more bubbly or rounded */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+  
+  /* Makes it look more stylized */
+  text-transform: capitalize; 
+  letter-spacing: 1px;
+}
+
+/* Horizontal Track */
+.horizontal-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+/* The "Bubbly" Card */
+.camp-card {
+  background-color: white;
+  color: #000;
+  padding: 30px;
+  border-radius: 60px; /* Makes the whole card super bubbly */
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 450px;
+  height: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.camp-card h3 { font-size: 24px; margin-bottom: 15px; }
+.camp-card p { font-size: 15px; margin-bottom: 20px; line-height: 1.4; color: black; }
+
+/* The Bubbly Grid Items */
+.bubbly-grid {
+  display: flex;
+  flex-wrap: wrap; /* This is the key: pushes items to next line if space runs out */
+  justify-content: flex-start; /* Aligns them neatly to the left */
+  margin: 15px 0;
+}
+
+.bubble-item {
+  display: inline-block;
+  padding: 8px 16px; /* Adjust padding to create space around text */
+  margin: 5px;       /* Adds space between bubbles */
+  background-color: #eef; /* Light background color */
+  border: 2px solid #0056b3; /* Border matching your theme */
+  border-radius: 20px; /* Makes the corners rounded */
+  text-align: center;
+  white-space: normal; /* Keeps text on one line within the bubble */
+  font-size: 14px;
+  word-wrap:break-word ;
+}
+
+/* Style for the Age Button */
+.age-button {
+  background-color: #104582;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px; /* Makes it pill-shaped */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: auto; /* Pushes the button to the bottom of the card */
+  align-self: center; /* Centers it horizontally */
+  transition: transform 0.2s ease;
+}
+
+.age-button:hover {
+  transform: scale(1.05); /* Slight grow effect on hover */
+}
+
+
+
+
+/* Wrapper to control max width */
+.wrapper {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  /* 'stretch' makes both child elements match the height of the tallest one */
+  align-items: center; 
+}
+
+.left-panel {
+  flex: 1; /* Takes exactly 50% of the container */
+}
+
+.left-panel img {
+  width: 100%;
+  height: 100%; /* Forces image to match the container height */
+  object-fit: cover; /* Ensures image fills space without distorting */
+  border-radius: 20px;
+  display: block;
+}
+
+.right-panel {
+  flex: 1;
+  background: #fdf5f5;
+  padding: 40px;
+  border-radius: 20px;
+  
+  /* Centers the text horizontally */
+  text-align: center; 
+  
+  /* Centers content vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Keeps the heading at the top */
+  align-items: center;         /* Ensures everything is centered horizontally */
+  box-sizing: border-box;
+}
+
+.right-panel h2 {
+  margin-top: 0; /* Ensures the heading stays at the very top */
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.right-panel p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+
+/* Container for the whole section */
+.impact-section {
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  margin-bottom: 50px;
+  font-family: sans-serif;
+  color: black;
+}
+
+/* The Grid Layout */
+.image-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* Space between images */
+  flex-wrap: wrap; /* Stacks images on small screens */
+}
+
+/* Individual image styling */
+.image-wrapper {
+  flex: 1; /* Images take up equal space */
+  min-width: min(500px, 100%); /* 500px on desktop, never wider than the screen on mobile */
+  max-width: 650px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Optional: Subtle zoom effect on hover */
+.image-wrapper img:hover {
+  transform: scale(1.02);
+}
+
+@media (min-width: 1024px) {
+    .gallery-item {
+        flex: 0 0 30%; /* 30% width allows 3 cards to fit perfectly */
+    }
+}
+
+
+@media (max-width: 600px) {
+    .navbar {
+        /* Keep it stacked, but align everything to the left */
+        align-items: flex-start; 
+        padding-left: 20px; /* Adds space from the left edge */
+    }
+
+    .nav-left {
+        /* Aligns your logo and links to the start of the container */
+        align-items: flex-start; 
+        width: 100%;
+    }
+
+    .nav-links {
+        /* Ensures links are also pushed to the left */
+        justify-content: flex-start; 
+        width: 100%;
+    }
+}
+
+
+/* 1. GLOBAL SETTINGS */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: 'Inter', 'Segoe UI', sans-serif; 
+    color: black; 
+    background-color: #ffffff;
+    overflow-x: hidden; /* Prevents horizontal scrollbars */
+    width: 100%; 
+}
+
+/* 2. NAVBAR (The Fix) */
+.navbar {
+    background-color: #003c71;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-left { display: flex; align-items: center; gap: 40px; }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+
+.logo {
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 900;
+    color: #f7BA06;
+    text-shadow: 0 0 10px #f7BA06;
+    transition: transform 0.3s ease;
+}
+
+.nav-link { color: #ffffff; text-decoration: none; font-size: 15px; font-weight: 500; }
+.nav-link:hover { color: #f7BA06; }
+
+/* 3. MOBILE RESPONSIVE LOGIC */
+@media (max-width: 600px) {
+    .navbar {
+        height: auto;        /* Allows height to grow if content stacks */
+        flex-direction: column; 
+        padding: 15px;
+        align-items: flex-start; /* Aligns everything to the left */
+    }
+    
+    .nav-left { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 10px; 
+        width: 100%; 
+    }
+    
+    .nav-links { 
+        gap: 15px; 
+        width: 100%; 
+    }
+}
+
+.video-container {
+  width: 100%;
+  /* Use 'position: relative' to allow child elements to be placed over it if needed */
+  position: relative;
+  overflow: hidden;
+  display: block;
+  /* Fixed aspect ratio keeps the container sized correctly even before the video loads */
+  aspect-ratio: 16 / 9;
+  max-height: 75vh;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  /* Maintains aspect ratio while ensuring the container is filled */
+  object-fit: cover;
+  display: block;
+}
+
+/* Add this media query to handle very small mobile screens */
+@media (max-width: 600px) {
+  .video-container {
+    aspect-ratio: 4 / 3; /* Taller ratio so the video stays visible on narrow screens */
+  }
+}
+/* 1. GALLERY WRAPPER */
+.gallery-wrapper {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(to bottom, #fbd234, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+    overflow: hidden; 
+}
+
+/* 2. GALLERY CONTAINER */
+.gallery-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden; /* Important: ensures nothing bleeds out */
+    position: relative;
+    border-radius: 30px;
+}
+
+/* 3. GALLERY TRACK */
+.gallery-track {
+    display: flex;
+    gap: 25px;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 20px 0;
+    will-change: transform;
+    /* Added this to keep items aligned when there are few items */
+    justify-content: flex-start; 
+}
+
+/* 4. GALLERY ITEMS (Responsive logic) */
+.gallery-item {
+    /* Mobile: 1 item visible with 'peek' effect */
+    flex: 0 0 85%; 
+    min-width: 250px;
+    height: 300px;
+    position: relative; 
+}
+
+/* LAPTOP/DESKTOP BREAKPOINT */
+@media (min-width: 1024px) {
+    .gallery-item {
+        /* Shows 3 items perfectly side-by-side */
+        flex: 0 0 30%; 
+    }
+}
+
+/* 5. IMAGE STYLING */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    border: 4px solid white;
+    box-shadow: 0 10px 30px rgba(58, 63, 90, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: translateY(-10px);
+}
+
+/* 6. NAVIGATION BUTTONS */
+.gallery-controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 40px;
+    z-index: 10;
+}
+
+#prevBtn, #nextBtn {
+    background: #003c71;
+    color: #ffffff;
+    border: 2px solid #00e5ff; /* Replaced variable with direct color */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#prevBtn:hover, #nextBtn:hover {
+    background-color: #ffffff;
+    color: black;
+    transform: scale(1.1);
+}
+
+
+/* 1. INFO SECTION */
+.info-section {
+    width: 100%;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px; 
+    box-sizing: border-box;
+}
+
+/* 2. MAIN CONTENT WRAPPER */
+.main-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+/* 3. GLOW TITLE */
+.glow-title {
+    font-size: clamp(24px, 5vw, 36px);
+    color: #003c71;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-align: center;
+    filter: drop-shadow(0 0 5px rgba(183, 156, 246, 0.5));
+}
+
+/* 4. GLASS CARD */
+.glass-card {
+    background: rgba(183, 156, 246, 0.08);
+    backdrop-filter: blur(10px);
+    border: 2px solid #003c71;
+    border-radius: 30px;
+    padding: 40px; /* Base padding */
+    box-shadow: 0 10px 30px rgba(106, 90, 205, 0.1);
+    width: 100%;             
+    height: auto;            
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* Mobile: Smaller padding and font for very narrow screens */
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 20px; /* Less padding on tiny phones so text has room */
+        font-size: 16px;
+    }
+    .info-section {
+        padding: 0 10px; /* Tighter margins on mobile */
+    }
+}
+
+/* Tablet/Laptop: Ensure the card doesn't look too wide/stretched */
+@media (min-width: 768px) {
+    .glass-card {
+        padding: 60px; /* More breathing room for larger screens */
+    }
+}
+
+/* Large Screens: Keep the card from becoming too wide */
+@media (min-width: 1200px) {
+    .glass-card {
+        max-width: 800px; /* Constrains the width so text remains easy to read */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+/* 1. SECTION WRAPPER */
+.services-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    width: 100%; /* Ensures it respects container boundaries */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the content */
+}
+
+/* 2. HEADER */
+.services-header {
+    text-align: center;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.services-header h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Scales automatically */
+    color: #1e3a8a;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.services-header p {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 3. INTELLIGENT GRID LAYOUT */
+.services-grid {
+    display: grid;
+    /* This automatically stacks on mobile and spreads on desktop */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+/* 4. CARD STYLING */
+.service-card {
+    border-radius: 24px;
+    padding: 40px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%; /* Ensures card fills the grid cell */
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* 5. CONTENT ALIGNMENT */
+.card-title-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.service-card h3 {
+    font-size: 1.45rem;
+    color: #1e3a8a;
+    font-weight: 600;
+    margin: 0;
+}
+
+.service-card p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #475569;
+}
+.service-card.young-learners {
+  background: linear-gradient(180deg, #eef5ff 0%, #ffffff 100%);
+  border: 1px solid #e2eefc;
+}
+
+.service-card.teenagers {
+  background: linear-gradient(180deg, #f7f1ff 0%, #ffffff 100%);
+  border: 1px solid #f0e5fc;
+}
+
+.service-card.educators {
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+  border: 1px solid #dcfce7;
+}
+
+.service-card.adults {
+  background: linear-gradient(180deg, #fffafd 0%, #fff7ed 100%);
+  border: 1px solid #ffedd5;
+}
+
+/* 6. RESPONSIVE TWEAKS */
+@media (max-width: 480px) {
+    .service-card {
+        padding: 25px; /* Less padding on small screens */
+    }
+}
+
+.partners-footer {
+    background: var(--dark-slate-nav);
+    color: #ffffff;
+    padding: 30px;
+    text-align: center;
+    border-top: 3px solid #f7BA06;
+    margin-top: 50px;
+}
+
+.footer-label {
+    display: block;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 20px;
+    color: var(--lavender);
+}
+/* TEAM CAROUSEL CONTAINER */
+.team-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.team-track {
+    position: relative;
+    width: 350px; /* Fixed width for the card */
+    height: 500px;
+    overflow: hidden;
+}
+
+/* INDIVIDUAL TEAM CARD */
+.team-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.team-card.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 2;
+}
+.team-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    gap: 30px; /* Space for the buttons */
+}
+
+.team-track {
+    width: 350px; /* Width of one card */
+    height: 550px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+/* Update your 'team-card' class in home-info-style.css */
+
+.team-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    /* THE NEW PREMIUM BOX STYLES */
+    background: rgba(255, 255, 255, 0.05); /* Slight white transparent fill */
+    backdrop-filter: blur(15px);         /* The Glassmorphism blur effect */
+    border: 4px solid #003c71;   /* A defined outline using your palette */
+    border-radius: 40px;                 /* Matches your other glass cards */
+    padding: 30px;                       /* Internal spacing for the content */
+    box-shadow: 0 15px 40px rgba(106, 90, 205, 0.2); /* Soft shadow for depth */
+
+    /* The mechanism to hide/show remains */
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    pointer-events: none;
+    
+    /* Layout control */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* The Active State (remains the same) */
+.team-card.active {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+/* Let's refine the image and text spacing too so they sit well in the box */
+
+.member-img {
+    width: 250px;       /* Fixed size inside the box */
+    height: 250px;
+    border-radius: 25px; /* Matches photo rounding from your image */
+    overflow: hidden;
+    margin-bottom: 25px; /* Spacing below photo */
+    
+    /* OPTIONAL: A direct glow box behind the photo itself */
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3); /* Sublte Cyan Glow */
+}
+
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: var(--dark-slate-nav);
+}
+
+.role {
+    color: var(--electric-purple); /* Using your branding purple for the title */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* IMAGE AREA */
+.member-img {
+    height: 65%;
+    width: 100%;
+}
+
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* INFO AREA (The Colorful Label) */
+.member-info {
+    padding: 20px;
+    text-align: center;
+    background: var(--cream-bg);
+    flex-grow: 1;
+    border-top: 5px solid var(--sunset-orange); /* Matching your pic */
+}
+
+.member-info h3 {
+    margin: 0;
+    color: var(--dark-slate-nav);
+    font-size: 22px;
+}
+
+.role {
+    color: var(--sunset-orange);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.member-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* NAVIGATION BUTTONS */
+.carousel-btn {
+    background: #003c71;
+    color: #ffffff;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    background:#003c71;
+    color: var(--dark-slate-nav);
+}
+/* The dark bar stays still */
+.partners-footer {
+    background: var(--dark-slate-nav);
+    padding: 30px 0;
+    width: 100%;
+    overflow: hidden; /* This hides logos as they exit the screen */
+    border-top: 3px solid var(--electric-purple);
+    text-align: center;
+}
+
+.footer-label {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: 8px;
+    color: var(--lavender);
+}
+
+/* The window through which logos move */
+.logo-slider {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+/* THE MOVING PART */
+.logo-track {
+    display: flex;
+    /* Adjust width based on: (Number of logos * (width + margin)) */
+    width: calc(200px * 10); 
+    animation: slideLogos 50s linear infinite;
+}
+
+.logo-track img {
+    /* 1. SIZE CONTROL */
+    width: 120px;            /* The base size of your circles */
+    height: 120px;           /* Height MUST match width for the circle */
+    flex-shrink: 0;          /* Prevents the browser from squishing the circles */
+    aspect-ratio: 1 / 1;     /* Forces a perfect square before rounding */
+
+    /* 2. IMAGE ADJUSTMENT */
+    object-fit: contain;     /* 'contain' keeps the whole logo visible inside the circle */
+    padding: 15px;           /* Adds 'breathing room' so the logo doesn't touch the edges */
+    background-color: white; /* Provides a clean background for transparent logos */
+    
+    /* 3. THE CIRCLE SHAPE */
+    border-radius: 50%;      
+    border: 3px solid #f7BA06; 
+    
+    /* 4. ANIMATION & EFFECTS */
+    margin: 0 30px;
+    opacity: 0.9;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.logo-track img:hover {
+    transform: scale(1.1);
+    border-color: var(--neon-cyan);
+    opacity: 1;
+}
+
+/* THE MECHANISM */
+@keyframes slideLogos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* This moves the track by exactly half its total width */
+        transform: translateX(calc(-200px * 5));
+    }
+}
+
+
+
+
+
+/* Container Section */
+.services-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+   align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Header */
+.services-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.services-header h2 {
+  font-size: 2.5rem;
+  color: #1e3a8a;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.services-header p {
+  font-size: 1.15rem;
+  color: #64748b;
+}
+
+/* Grid Layout */
+.services-grid {
+  display: grid;
+  /* Two columns on desktop, stacks to one column when cards can't fit */
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 30px;
+}
+
+/* Card Styling & Hover Effect */
+.service-card {
+  border-radius: 24px;
+  padding: 40px;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  
+  /* Handles the smooth pop-forward transition */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Coming Forward Effect */
+.service-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Title and Text Content */
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.service-card .icon {
+  font-size: 1.6rem;
+}
+
+.service-card h3 {
+  font-size: 1.45rem;
+  color: #1e3a8a;
+  font-weight: 600;
+  margin: 0;
+}
+
+.service-card p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+/* Card Theme Variations */
+.service-card.young-learners {
+  background: linear-gradient(180deg, #eef5ff 0%, #ffffff 100%);
+  border: 1px solid #e2eefc;
+}
+
+.service-card.teenagers {
+  background: linear-gradient(180deg, #f7f1ff 0%, #ffffff 100%);
+  border: 1px solid #f0e5fc;
+}
+
+.service-card.educators {
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+  border: 1px solid #dcfce7;
+}
+
+.service-card.adults {
+  background: linear-gradient(180deg, #fffafd 0%, #fff7ed 100%);
+  border: 1px solid #ffedd5;
+}
+/* Full-Width Banner */
+.camp-banner {
+  width: 100%; /* 100vw includes the scrollbar and causes horizontal overflow */
+  background-color: #104582;
+  padding: 60px 20px;
+  margin: 40px 0;
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.explore{ 
+    color: white; 
+  text-align: center; 
+  margin-bottom: 30px; 
+  
+  /* Increase font size */
+  font-size: 3rem; 
+  
+  /* Use a font that looks more bubbly or rounded */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+  
+  /* Makes it look more stylized */
+  text-transform: capitalize; 
+  letter-spacing: 1px;
+}
+
+/* Horizontal Track */
+.horizontal-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+/* The "Bubbly" Card */
+.camp-card {
+  background-color: white;
+  color: #000;
+  padding: 30px;
+  border-radius: 60px; /* Makes the whole card super bubbly */
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 450px;
+  height: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.camp-card h3 { font-size: 24px; margin-bottom: 15px; }
+.camp-card p { font-size: 15px; margin-bottom: 20px; line-height: 1.4; color: black; }
+
+/* The Bubbly Grid Items */
+.bubbly-grid {
+  display: flex;
+  flex-wrap: wrap; /* This is the key: pushes items to next line if space runs out */
+  justify-content: flex-start; /* Aligns them neatly to the left */
+  margin: 15px 0;
+}
+
+.bubble-item {
+  display: inline-block;
+  padding: 8px 16px; /* Adjust padding to create space around text */
+  margin: 5px;       /* Adds space between bubbles */
+  background-color: #eef; /* Light background color */
+  border: 2px solid #0056b3; /* Border matching your theme */
+  border-radius: 20px; /* Makes the corners rounded */
+  text-align: center;
+  white-space: normal; /* Keeps text on one line within the bubble */
+  font-size: 14px;
+  word-wrap:break-word ;
+}
+
+/* Style for the Age Button */
+.age-button {
+  background-color: #104582;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px; /* Makes it pill-shaped */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: auto; /* Pushes the button to the bottom of the card */
+  align-self: center; /* Centers it horizontally */
+  transition: transform 0.2s ease;
+}
+
+.age-button:hover {
+  transform: scale(1.05); /* Slight grow effect on hover */
+}
+
+
+
+
+/* Wrapper to control max width */
+.wrapper {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  /* 'stretch' makes both child elements match the height of the tallest one */
+  align-items: center; 
+}
+
+.left-panel {
+  flex: 1; /* Takes exactly 50% of the container */
+}
+
+.left-panel img {
+  width: 100%;
+  height: 100%; /* Forces image to match the container height */
+  object-fit: cover; /* Ensures image fills space without distorting */
+  border-radius: 20px;
+  display: block;
+}
+
+.right-panel {
+  flex: 1;
+  background: #fdf5f5;
+  padding: 40px;
+  border-radius: 20px;
+  
+  /* Centers the text horizontally */
+  text-align: center; 
+  
+  /* Centers content vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Keeps the heading at the top */
+  align-items: center;         /* Ensures everything is centered horizontally */
+  box-sizing: border-box;
+}
+
+.right-panel h2 {
+  margin-top: 0; /* Ensures the heading stays at the very top */
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.right-panel p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+
+/* Container for the whole section */
+.impact-section {
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  margin-bottom: 50px;
+  font-family: sans-serif;
+  color: black;
+}
+
+/* The Grid Layout */
+.image-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* Space between images */
+  flex-wrap: wrap; /* Stacks images on small screens */
+}
+
+/* Individual image styling */
+.image-wrapper {
+  flex: 1; /* Images take up equal space */
+  min-width: min(500px, 100%); /* 500px on desktop, never wider than the screen on mobile */
+  max-width: 650px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Optional: Subtle zoom effect on hover */
+.image-wrapper img:hover {
+  transform: scale(1.02);
+}
+
+@media (min-width: 1024px) {
+    .gallery-item {
+        flex: 0 0 30%; /* 30% width allows 3 cards to fit perfectly */
+    }
+}
+
+
+@media (max-width: 600px) {
+    .navbar {
+        /* Keep it stacked, but align everything to the left */
+        align-items: flex-start; 
+        padding-left: 20px; /* Adds space from the left edge */
+    }
+
+    .nav-left {
+        /* Aligns your logo and links to the start of the container */
+        align-items: flex-start; 
+        width: 100%;
+    }
+
+    .nav-links {
+        /* Ensures links are also pushed to the left */
+        justify-content: flex-start; 
+        width: 100%;
+    }
+}

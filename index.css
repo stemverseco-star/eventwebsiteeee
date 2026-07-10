@@ -1,0 +1,301 @@
+/* ==========================
+   STEMverse Landing Page
+========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#FFD23F;
+    color:#17324D;
+    overflow-x:hidden;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.navbar{
+  background-color: #003c71;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 70px;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:50px;
+}
+
+.logo{
+    text-decoration:none;
+    color:#FFC107;
+    font-size:2rem;
+    font-weight:700;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-link{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:.3s;
+    position:relative;
+}
+
+.nav-link::after{
+    content:"";
+    position:absolute;
+    width:0%;
+    height:2px;
+    background:#FFD23F;
+    left:0;
+    bottom:-6px;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#FFD23F;
+}
+
+.nav-link:hover::after{
+    width:100%;
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.hero-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:140px 8% 100px;
+}
+
+.hero-content{
+    max-width:900px;
+    animation:fadeUp 1s ease;
+}
+
+.brand-badge{
+    display:inline-block;
+    background:#0B4A82;
+    color:white;
+    padding:12px 30px;
+    border-radius:40px;
+    margin-bottom:30px;
+    font-weight:500;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.hero-title{
+    font-size:4rem;
+    color:#0B4A82;
+    margin-bottom:20px;
+    font-weight:800;
+}
+
+.highlight-text{
+    color:#F4A300;
+}
+
+.hero-subtitle{
+    font-size:1.2rem;
+    color:#333;
+    line-height:1.8;
+    max-width:700px;
+    margin:0 auto 45px;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.cta-group{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.cta-btn{
+    text-decoration:none;
+    padding:16px 35px;
+    border-radius:50px;
+    font-size:1rem;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:.35s;
+}
+
+.primary-btn{
+    background:#0B4A82;
+    color:white;
+    box-shadow:0 10px 25px rgba(11,74,130,.3);
+}
+
+.primary-btn:hover{
+    transform:translateY(-5px);
+    background:#083A65;
+}
+
+.secondary-btn{
+    background:white;
+    color:#0B4A82;
+    border:2px solid #0B4A82;
+}
+
+.secondary-btn:hover{
+    background:#0B4A82;
+    color:white;
+    transform:translateY(-5px);
+}
+
+/* ==========================
+   FOOTER
+========================== */
+.partners-footer {
+    background: #0B4A82; /* UPDATED: Deep Purple Background */
+    padding: 30px 0;
+    width: 100%;
+    overflow: hidden; 
+    border-top: 3px solid #FFC107; /* Updated to Gold to pop against the purple */
+    text-align: center;
+}
+
+.footer-label {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: 8px;
+    color: #E0B0FF; /* Updated to a concrete Mauve/Lavender hex so it is visible */
+}
+
+/* The window through which logos move */
+.logo-slider {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+/* THE MOVING PART */
+.logo-track {
+    display: flex;
+    width: calc(200px * 10); 
+    animation: slideLogos 50s linear infinite;
+}
+
+.logo-slider:hover .logo-track,
+.logo-slider:active .logo-track,
+.logo-slider:focus .logo-track {
+    animation-play-state: paused;
+    cursor: pointer; 
+}
+
+.logo-track img {
+    width: 120px;            
+    height: 120px;           
+    flex-shrink: 0;          
+    aspect-ratio: 1 / 1;     
+
+    object-fit: contain;     
+    padding: 15px;           
+    background-color: white; 
+    
+    border-radius: 50%;      
+    border: 3px solid #f7BA06; 
+    
+    margin: 0 30px;
+    opacity: 0.9;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.logo-track img:hover {
+    transform: scale(1.1);
+    border-color: #00FFFF; /* Replaced variable with standard Neon Cyan hex */
+    opacity: 1;
+}
+
+/* THE MECHANISM */
+@keyframes slideLogos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-200px * 5));
+    }
+}
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes scroll{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-50%);
+    }
+}
+@media (max-width: 600px) {
+    .navbar {
+        /* Keep it stacked, but align everything to the left */
+        height: auto;
+        padding: 15px;
+        flex-direction: column; /* Stacks logo on top of links */
+        gap: 10px;
+    }
+
+    .nav-left {
+        /* Aligns your logo and links to the start of the container */
+        align-items: flex-start; 
+        width: 100%;
+    }
+
+    .nav-links {
+        /* Ensures links are also pushed to the left */
+        justify-content: flex-start; 
+        width: 100%;
+    }
+}
+
+
