@@ -599,7 +599,7 @@ body {
   transform: scale(1.02);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1024px)nav {
     .gallery-item {
         flex: 0 0 30%; /* 30% width allows 3 cards to fit perfectly */
     }

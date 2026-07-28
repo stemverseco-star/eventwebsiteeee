@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junior Robotics Kit — STEMverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF8F2;
+    --navy:#003C71;
+    --ink:#16232B;
+    --ink-soft:#4B5A61;
+    --orange:#F7BA06;
+    --teal:#2E8B8B;
+    --line:#D8D2C4;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(0,60,113,0.08), transparent 55%),
+      radial-gradient(ellipse 70% 45% at 95% 5%, rgba(247,186,6,0.12), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 90%, rgba(46,139,139,0.07), transparent 55%),
+      radial-gradient(ellipse 50% 35% at 5% 85%, rgba(0,60,113,0.05), transparent 50%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.45;
+    background-image:
+      linear-gradient(rgba(0,60,113,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,60,113,0.045) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse 75% 70% at 50% 30%, #000 20%, transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 30%, #000 20%, transparent 75%);
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.55;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320' fill='none'%3E%3Cpath d='M40 0V80H0M280 0V60H320M0 240H60V320M320 260H260V320M160 40H200V80H240M80 160V200H120V240M200 200H240V240H280' stroke='%23003C71' stroke-opacity='0.07' stroke-width='1.5' stroke-dasharray='4 6'/%3E%3Ccircle cx='40' cy='80' r='3' fill='%23F7BA06' fill-opacity='0.25'/%3E%3Ccircle cx='280' cy='60' r='3' fill='%23003C71' fill-opacity='0.18'/%3E%3Ccircle cx='60' cy='240' r='3' fill='%232E8B8B' fill-opacity='0.22'/%3E%3Ccircle cx='260' cy='260' r='3' fill='%23F7BA06' fill-opacity='0.2'/%3E%3Ccircle cx='200' cy='80' r='2.5' fill='%23003C71' fill-opacity='0.15'/%3E%3Ccircle cx='120' cy='200' r='2.5' fill='%23F7BA06' fill-opacity='0.18'/%3E%3C/svg%3E");
+    background-size:320px 320px;
+  }
+  
+  /* Updated Navigation Bar Styles */
+  .navbar {
+      background-color: var(--navy);
+      padding: 16px 24px;
+      width: 100%;
+  }
+
+  .nav-left {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+  }
+
+  .nav-left .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--orange);
+      text-decoration: none;
+      text-shadow: 0 0 10px rgba(247, 186, 6, 0.4);
+  }
+
+  .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+  }
+
+  .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #FFFFFF;
+      text-decoration: none;
+      transition: color 0.15s ease;
+  }
+
+  .nav-link:hover {
+      color: var(--orange);
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 24px;
+    position:relative;
+    z-index:1;
+  }
+
+  header.top{
+    padding:20px 0 0;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+  }
+  .brand img{
+    height:56px;
+    width:auto;
+    display:block;
+  }
+  .eyebrow-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:5px 12px;
+  }
+
+  .hero{
+    padding:64px 0 12px;
+    text-align:center;
+  }
+  .hero h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:44px;
+    line-height:1.12;
+    margin:0 0 10px;
+    color:var(--navy);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--orange);
+  }
+  .hero p.sub{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:480px;
+    margin:0 auto;
+    line-height:1.55;
+  }
+
+  /* circuit trace connecting hero to the download button */
+  .trace-wrap{
+    display:flex;justify-content:center;
+    margin:26px 0 8px;
+  }
+  svg#trace{ display:block; }
+  .trace-path{
+    fill:none;
+    stroke:var(--line);
+    stroke-width:2;
+    stroke-dasharray:6 6;
+  }
+  .trace-pulse{
+    fill:none;
+    stroke:var(--orange);
+    stroke-width:2.5;
+    stroke-dasharray:14 800;
+    stroke-dashoffset:0;
+    animation:travel 5s ease-in-out infinite;
+  }
+  @keyframes travel{
+    0%{stroke-dashoffset:0; opacity:0;}
+    4%{opacity:1;}
+    42%{stroke-dashoffset:-800; opacity:1;}
+    48%{stroke-dashoffset:-800; opacity:0;}
+    49%,100%{stroke-dashoffset:0; opacity:0;}
+  }
+  .via{ fill:var(--paper); stroke:var(--line); stroke-width:2; }
+  .via.lit{ animation:lightup 5s ease-in-out infinite; }
+  @keyframes lightup{
+    0%,6%{ fill:var(--paper); }
+    18%{ fill:var(--orange); }
+    36%{ fill:var(--orange); }
+    48%,100%{ fill:var(--paper); }
+  }
+
+  .cta-zone{ text-align:center; padding:0 0 8px; }
+  .btn-download{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:17px;
+    color:#fff;
+    background:var(--navy);
+    border:none;
+    border-radius:10px;
+    padding:16px 30px;
+    text-decoration:none;
+    box-shadow:0 2px 0 var(--orange);
+    transition:transform 0.12s ease;
+  }
+  .btn-download:hover{ transform:translateY(-2px); }
+  .btn-download svg{ width:18px; height:18px; }
+  .filesize{
+    display:block;
+    margin-top:10px;
+    font-size:13px;
+    color:var(--ink-soft);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    margin:56px 0 40px;
+  }
+  .stat{
+    background:var(--card);
+    padding:22px 14px;
+    text-align:center;
+  }
+  .stat .num{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:26px;
+    color:var(--navy);
+    line-height:1.1;
+  }
+  .stat .num.infinity{
+    font-size:34px;
+    letter-spacing:-0.02em;
+  }
+  .stat .label{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  .missions{
+    margin:0 0 56px;
+  }
+  .missions h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
+  .chip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    font-size:13px;
+    color:var(--navy);
+    background:#EAF1F3;
+    border-radius:20px;
+    padding:6px 13px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 0 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  footer a{ color:var(--navy); text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+  @media (max-width:560px){
+    .hero h1{ font-size:32px; }
+    .stats{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Event Optimized Navigation Bar -->
+  <nav class="navbar">
+      <div class="nav-left">
+          <a href="index.html" class="logo">STEMverse</a>
+          <div class="nav-links">
+              <a href="home.html" class="nav-link">About Us</a>
+              <a href="contactus.html" class="nav-link">Contact Us</a>
+          </div>
+      </div>
+  </nav>
+
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="https://www.stemverseofficial.com" aria-label="STEMverse">
+      <img src="./stemverse-logo.svg" alt="STEMverse">
+    </a>
+    <div class="eyebrow-tag">KIT MANUAL</div>
+  </header>
+
+  <section class="hero">
+    <h1>Thanks for building with the<br><em>Junior Robotics Kit</em></h1>
+    <p class="sub">Your manual has everything you need — from your very first LED to a fully working Assist-Bot. Scan led you here, so let's power it on.</p>
+  </section>
+
+  <div class="trace-wrap">
+    <svg id="trace" width="260" height="70" viewBox="0 0 260 70">
+      <path class="trace-path" d="M130 0 V22 H60 V48 H130 V70 M130 48 H200 V22 H130"/>
+      <path class="trace-pulse" d="M130 0 V22 H60 V48 H130 V70 M130 48 H200 V22 H130"/>
+      <circle class="via lit" cx="130" cy="22" r="4"/>
+      <circle class="via lit" cx="60" cy="48" r="4"/>
+      <circle class="via lit" cx="200" cy="22" r="4"/>
+    </svg>
+  </div>
+
+  <div class="cta-zone">
+    <a class="btn-download" href="./CircuitStart_Manual.pdf" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+      Download your Junior Robotics manual (PDF)
+    </a>
+    <span class="filesize">Junior Robotics Manual.pdf</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">20</div><div class="label">guided missions</div></div>
+    <div class="stat"><div class="num">1</div><div class="label">Assist-Bot capstone</div></div>
+    <div class="stat"><div class="num infinity">&infin;</div><div class="label">self-directed builds</div></div>
+  </div>
+
+  <div class="missions">
+    <h2>What you'll build</h2>
+    <div class="chip-row">
+      <span class="chip">Medication reminder</span>
+      <span class="chip">Traffic signal</span>
+      <span class="chip">Reflex tester</span>
+      <span class="chip">Quiz buzzer</span>
+      <span class="chip">Smart streetlight</span>
+      <span class="chip">Dimmable lamp</span>
+      <span class="chip">Hygiene alert</span>
+      <span class="chip">Intrusion alarm</span>
+      <span class="chip">Parking sensor</span>
+      <span class="chip">Assistive cane</span>
+      <span class="chip">Sanitizer dispenser</span>
+      <span class="chip">Auto feeder</span>
+      <span class="chip">Barrier gate</span>
+      <span class="chip">Solar tracker</span>
+      <span class="chip">Memory trainer</span>
+      <span class="chip">Obstacle rover</span>
+      <span class="chip">Delivery cart</span>
+      <span class="chip">SOS wearable</span>
+      <span class="chip">Patrol bot</span>
+      <span class="chip">Assist-Bot</span>
+    </div>
+  </div>
+
+  <footer>
+    <span>&copy; STEMverse &middot; National Incubation Center, Peshawar</span>
+    <a href="https://www.stemverseofficial.com">stemverseofficial.com</a>
+  </footer>
+
+</div>
+</body>
+</html>
