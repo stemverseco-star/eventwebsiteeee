@@ -699,6 +699,7 @@ body {
   /* Fixed aspect ratio keeps the container sized correctly even before the video loads */
   aspect-ratio: 16 / 9;
   max-height: 75vh;
+  margin-top: 70px; 
 }
 
 .video-container video {
@@ -712,7 +713,8 @@ body {
 /* Add this media query to handle very small mobile screens */
 @media (max-width: 600px) {
   .video-container {
-    aspect-ratio: 4 / 3; /* Taller ratio so the video stays visible on narrow screens */
+    aspect-ratio: 4 / 3; 
+    margin-top: 120px;/* Taller ratio so the video stays visible on narrow screens */
   }
 }
 /* 1. GALLERY WRAPPER */
