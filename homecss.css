@@ -1615,3 +1615,19 @@ body {
         font-size: 2rem;
     }
 }
+.contact-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 24px;
+    background-color: #16357c; /* matches the dark blue in your design */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-btn:hover {
+    background-color: #0f2557;
+    transform: translateY(-2px);
+}
