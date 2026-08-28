@@ -179,14 +179,14 @@ const teamMembers = [
         role: "Content & Social Media",
         image: "pictures/sanam.png",
         theme: "light",
-        bio: "I’m the one behind STEMverse’s social media — from creating fun, engaging content and Insta videos to managing our digital presence and making sure STEMverse stays active, creative, and connected with its audience."
+        bio: "I’m the one behind STEMverse’s social media from creating fun, engaging content and Insta videos to managing our digital presence and making sure STEMverse stays active, creative, and connected with its audience."
     },
     {
         name: "Haseeb Afridi",
         role: "Full Stack Developer",
-        image: "pictures/haseb.ipeg",
+        image: "pictures/haseb.jpeg",
         theme: "light",
-        bio: "As a Full Stack Developer at STEMverse, I’m the one behind the app you see — building and managing everything from the user interface to the backend, turning ideas into smooth, functional, and user-friendly digital experiences."
+        bio: "As a Full Stack Developer at STEMverse, I’m the one behind the app you see  building and managing everything from the user interface to the backend, turning ideas into smooth, functional, and user-friendly digital experiences."
     },
     {
         name: "Member Two",
