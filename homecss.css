@@ -1631,3 +1631,399 @@ body {
     background-color: #0f2557;
     transform: translateY(-2px);
 }
+/* =====================================
+   WEBSITE BACKGROUND
+===================================== */
+
+
+/* =====================================
+   TEAM SECTION
+===================================== */
+
+.team-section {
+    position: relative;
+
+    width: 100%;
+
+    /*
+       This controls the actual banner height.
+       It leaves your yellow website background
+       visible above and below.
+    */
+
+    min-height: 78vh;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    margin: 0 auto;
+}
+
+
+/* =====================================
+   BLURRED BACKGROUND
+===================================== */
+
+.team-background {
+   position: absolute;
+    inset: -30px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: blur(14px);
+
+    transform: scale(1.08);
+
+    opacity: 90;
+
+    z-index: 0;
+}
+
+
+/* =====================================
+   LIGHT OVERLAY
+===================================== */
+
+.team-overlay {
+
+    position: absolute;
+    inset: 0;
+
+    background: transparent;
+
+    z-index: 1;
+}
+
+
+/* =====================================
+   CONTENT
+===================================== */
+
+.team-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1400px, 82%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 42% 58%;
+
+    align-items: center;
+
+    gap: 5%;
+}
+
+
+/* =====================================
+   FRONT IMAGE
+===================================== */
+
+.team-photo {
+    width: 100%;
+}
+
+
+.team-photo img {
+    display: block;
+
+    width: 100%;
+
+    max-width: 400px;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+
+    margin: auto;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =====================================
+   TEXT
+===================================== */
+
+.team-details {
+    max-width: 800px;
+}
+
+
+.team-details h1 {
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(48px, 5vw, 78px);
+    font-weight: 400;
+    line-height: 1;
+    color: white;
+}
+
+
+.team-details h2 {
+    margin: 15px 0 22px;
+
+    font-family: 'Plus Jakarta Sans', sans-serif;;
+
+    font-size: clamp(21px, 2vw, 30px);
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    color: white;
+}
+
+
+.team-details p {
+    margin: 0;
+
+    max-width: 760px;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: clamp(16px, 1.35vw, 21px);
+
+    line-height: 1.55;
+
+    color: white;
+}
+
+
+/* =====================================
+   ARROW BUTTONS
+===================================== */
+
+.team-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 5;
+
+    width: 72px;
+
+    height: 72px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #07548b;
+
+    color: white;
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+.team-arrow:hover {
+    background: #000;
+
+    transform: translateY(-50%) scale(1.08);
+}
+
+
+/* LEFT */
+
+.team-prev {
+    left: 0;
+}
+
+
+/* RIGHT */
+
+.team-next {
+    right: 0;
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+    .team-section {
+        min-height: 75vh;
+    }
+
+    .team-content {
+        width: 82%;
+
+        grid-template-columns: 40% 60%;
+
+        gap: 4%;
+    }
+
+    .team-arrow {
+        width: 58px;
+        height: 58px;
+
+        font-size: 32px;
+    }
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 700px) {
+
+    .team-section {
+        min-height: auto;
+
+        padding: 50px 0;
+    }
+
+
+    .team-content {
+        width: 80%;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .team-photo img {
+        width: 100%;
+
+        max-width: 450px;
+
+        aspect-ratio: 4 / 5;
+    }
+
+
+    .team-details h1 {
+        font-size: clamp(42px, 11vw, 60px);
+    }
+
+
+    .team-details h2 {
+        font-size: 21px;
+
+        margin: 12px 0 18px;
+    }
+
+
+    .team-details p {
+        font-size: 17px;
+
+        line-height: 1.5;
+    }
+
+
+    .team-arrow {
+        width: 48px;
+        height: 48px;
+
+        font-size: 26px;
+    }
+
+
+    .team-prev {
+        left: 8px;
+    }
+
+
+    .team-next {
+        right: 8px;
+    }
+}
+
+
+/* =====================================
+   VERY SMALL PHONES
+===================================== */
+
+@media (max-width: 400px) {
+
+    .team-content {
+        width: 76%;
+    }
+
+
+    .team-arrow {
+        width: 42px;
+        height: 42px;
+
+        font-size: 22px;
+    }
+}
+/* 1. Akt font (loaded directly from Google) */
+.akt-text {
+    font-family: 'Inter', sans-serif;
+}
+
+/* 2. The Seasons alternative (high-end luxury serif) */
+.the-seasons-text {
+    font-family: 'Cinzel', serif;
+}
+
+/* 3. Agrandir alternative (clean modern grotesque sans-serif) */
+.agrandir-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+/* Deep Navy & Gold Theme for light-background members */
+.team-section.navy-theme .team-details {
+    background: rgba(0, 0, 40, 0.85); /* Deep Navy semi-transparent backdrop */
+    backdrop-filter: blur(10px);        /* Frosted glass blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Gold Headers */
+.team-section.navy-theme .team-details h1{
+    color: #d4af37 !important; 
+}
+.team-section.navy-theme .team-details h2 {
+    color: white!important; 
+}
+
+/* White Body Text */
+.team-section.navy-theme .team-details p {
+    color: #ffffff !important;
+}
+
+/* Contact Button styled for Navy & Gold */
+.team-section.navy-theme .contact-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: #d4af37; /* Gold button */
+    color: #000040;      /* Dark navy text */
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: 0.3s ease;
+}
+
+.team-section.navy-theme .contact-btn:hover {
+    background: #ffffff;
+    color: #000040;
+}
