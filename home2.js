@@ -462,3 +462,76 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("⚠️ Spotlight Warning: Couldn't find spotlight grid/nav elements in HTML.");
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+ 
+  var section = document.getElementById('experience');
+ 
+  if (!section) {
+    console.warn("⚠️ Experience section not found — check that your section has id=\"experience\".");
+    return;
+  }
+ 
+  var animated = false;
+ 
+  function animateBars(){
+    if (animated) return;
+    animated = true;
+ 
+    var skills = section.querySelectorAll('.skill');
+ 
+    if (!skills.length) {
+      console.warn("⚠️ No .skill elements found inside #experience — check your HTML markup.");
+      return;
+    }
+ 
+    skills.forEach(function(skill){
+      var target = parseInt(skill.getAttribute('data-percent'), 10);
+      var fill = skill.querySelector('.skill__fill');
+      var label = skill.querySelector('.skill__percent');
+      var suffix = skill.getAttribute('data-suffix') || ''; // e.g. "+"
+ 
+      if (isNaN(target) || !fill || !label) {
+        console.warn("⚠️ A .skill element is missing data-percent, .skill__fill, or .skill__percent.", skill);
+        return;
+      }
+ 
+      // bar still fills based on percentage width — this part is unchanged
+      var barWidth = Math.min(target, 100);
+     requestAnimationFrame(function(){
+      fill.style.width = barWidth + '%';
+     });
+ 
+      // number counts up but displays as a plain number, no % sign
+      var duration = 1200; // ms, matches the CSS transition on .skill__fill
+      var startTime = null;
+ 
+      function step(timestamp){
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var current = Math.round(progress * target);
+       label.textContent = current.toLocaleString() + (progress === 1 ? suffix : ''); // <-- no '%' appended anymore
+        if (progress < 1){
+          requestAnimationFrame(step);
+        }
+      }
+      requestAnimationFrame(step);
+    });
+  }
+ 
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          animateBars();
+          observer.disconnect(); // only ever run once
+        }
+      });
+    }, { threshold: 0.3 });
+ 
+    observer.observe(section);
+  } else {
+    animateBars();
+  }
+ 
+});
+ 

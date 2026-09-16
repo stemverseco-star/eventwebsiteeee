@@ -1344,3 +1344,78 @@ img {
  .beam-1, .beam-2, .beam-3, .expand-toggle, .spin-badge {
  animation: none;
  } }
+
+.experience{
+  display:grid;
+  grid-template-columns: 1.15fr 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 900px){
+  .experience{ grid-template-columns: 1fr; }
+}
+ 
+/* LEFT PANEL */
+.experience__content{
+  background: var(--bg-2);
+  padding: 6vw 6vw 6vw 6vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+ 
+.experience__title{
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+ 
+.experience__rule{
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 0 0 40px 0;
+}
+ 
+.skill{
+  margin-bottom: 32px;
+}
+.skill:last-of-type{ margin-bottom: 0; }
+ 
+.skill__row{
+  display:flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+.skill__percent{
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+ 
+.skill__track{
+  height: 6px;
+  width: 100%;
+  background: var(--track); /* light navy tint, NOT the same as fill */
+  border-radius: 3px;
+  overflow: hidden;
+}
+.skill__fill{
+  height: 100%;
+  width: 0%; /* starts empty, animated by JS */
+  background: var(--navy);
+  border-radius: 3px;
+  transition: width 1.2s cubic-bezier(.25,.8,.25,1);
+}
+ 
+/* RIGHT PANEL (image) */
+.experience__media{
+  position: relative;
+  min-height: 320px;
+  background:
+    linear-gradient(120deg, rgba(0,0,0,0.35), rgba(0,0,0,0.05) 40%),
+    url('pictures/experiencepicture.png') center / cover no-repeat;
+  background-color: #1a1c22; /* fallback while image loads */
+}
+ 
