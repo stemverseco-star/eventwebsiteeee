@@ -265,49 +265,29 @@
        PROFILE
     ========================================= */
 
-    .profile-photo {
-      width: 96px;
-      height: 96px;
+   .profile-photo {
+  width: 80px; /* Make width and height equal so it forms a proper circle */
+  height: 80px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  border: 4px solid var(--yellow);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orbit-blue);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  overflow: hidden;
+}
 
-      margin: 0 auto 18px;
-
-      border-radius: 50%;
-
-      border: 4px solid var(--yellow);
-
-      background: var(--cream);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: var(--orbit-blue);
-
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-
-      overflow: hidden;
-    }
-
-
-    /*
-      If you have a professional photo of Muzammil,
-      replace the contents of .profile-photo with:
-
-      <img
-        src="/images/muzammil.jpg"
-        alt="Muhammad Muzammil Qarni"
-      >
-
-      and use:
-
-      .profile-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    */
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevents the aggressive zoom-in */
+}
+    
 
 
     .name {
@@ -672,7 +652,7 @@
 
           <!-- Replace MQ with Muzammil's photo -->
           <div class="profile-photo">
-            MQ
+            <img src="/connect/muzammil.png" alt="Profile Picture">
           </div>
 
 
@@ -783,24 +763,45 @@
 
         <!-- EMAIL -->
 
-        <a
-          href="mailto:muzammil@stemverseofficial.com"
-          class="contact-card"
-        >
+        <a href="mailto:muzammil@stemverseofficial.com" class="contact-card" id="emailLink">
+  Email Muzammil
+</a>
 
-          <div class="contact-icon">
-            ✉
-          </div>
+<script>
+(function () {
+  const EMAIL = "muzammil@stemverseofficial.com";
+  const link = document.getElementById("emailLink");
 
-          <span class="contact-label">
-            Email
-          </span>
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
 
-          <span class="contact-value">
-            Muzammil@stemverseofficial.com
-          </span>
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isAndroid = /android/i.test(ua);
+    const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
 
-        </a>
+    if (isAndroid) {
+      // Try to force Gmail app directly
+      const intentUrl =
+        "intent://compose?to=" + encodeURIComponent(EMAIL) +
+        "#Intent;package=com.google.android.gm;scheme=mailto;S.browser_fallback_url=" +
+        encodeURIComponent("mailto:" + EMAIL) + ";end";
+      window.location.href = intentUrl;
+
+    } else if (isIOS) {
+      // No way to force Gmail app on iOS — use system default mail app
+      window.location.href = "mailto:" + EMAIL;
+
+    } else {
+      // Desktop: open Gmail web compose
+      window.open(
+        "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(EMAIL),
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
+  });
+})();
+</script>
 
 
       </section>
