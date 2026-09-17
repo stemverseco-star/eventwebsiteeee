@@ -688,22 +688,43 @@ img {
  TEAM CAROUSEL
  ========================================================================== */
 .team-carousel {
- display: flex;
- align-items: center;
- justify-content: center;
- position: relative;
- width: 100%;
- padding: 20px;
- gap: 30px;
+  position: relative;      /* NEW — anchor for the absolute arrows */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  /* gap removed — arrows no longer share the row */
 }
  
 .team-track {
- width: 350px;
- max-width: 88vw;
- height: 550px;
- position: relative;
- display: flex;
- justify-content: center;
+  width: 350px;
+  max-width: 88vw;
+  height: 550px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;           /* keep it centered on its own */
+}
+@media (max-width: 480px) {
+  .team-carousel {
+    gap: 8px;
+    padding: 12px;
+  }
+  .carousel-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .team-track {
+    max-width: calc(100vw - 34px * 2 - 8px * 2 - 24px); /* viewport minus both arrows, gaps, and side padding */
+  }
+}
+@media (max-width: 420px) {
+ .team-track { height: 500px; }
+ .member-img { width: 170px; height: 170px; }
+ .team-card { padding: 22px; }
 }
  
 @media (max-width: 420px) {
@@ -796,26 +817,47 @@ img {
 }
  
 .carousel-btn {
- background: var(--navy);
- color: #ffffff;
- border: 2px solid var(--cyan);
- border-radius: 50%;
- width: 45px;
- height: 45px;
- cursor: pointer;
- font-size: 20px;
- transition: all 0.3s var(--ease-bounce);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--navy);
+  color: #ffffff;
+  border: 2px solid var(--cyan);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 5;               /* sit above the card */
+  transition: all 0.3s var(--ease-bounce);
 }
+#teamPrev { left: 0; }
+#teamNext { right: 0; }
  
 .carousel-btn:hover {
- background: var(--gold);
- color: var(--navy-deep);
- border-color: var(--gold);
- transform: scale(1.12);
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-color: var(--gold);
+  transform: translateY(-50%) scale(1.12);   /* keep the vertical centering when scaling */
 }
  
 .carousel-btn:active {
- transform: scale(0.92);
+  transform: translateY(-50%) scale(0.92);
+}
+@media (max-width: 480px) {
+  .carousel-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+  #teamPrev { left: 4px; }
+  #teamNext { right: 4px; }
+}
+
+@media (max-width: 420px) {
+  .team-track { height: 500px; }
+  .member-img { width: 170px; height: 170px; }
+  .team-card { padding: 22px; }
 }
  
 /* ==========================================================================
