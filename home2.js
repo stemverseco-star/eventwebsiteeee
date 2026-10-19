@@ -320,8 +320,8 @@ document.addEventListener('DOMContentLoaded', () => {
             quote: "Celebrating our young coders as they competed among the best at NUST, proving their technical prowess and securing a spot in the top 10 finalists.",
             cover: "pictures/optimized/eap11.webp",
             details: [
-                { text: "Competing on a prestigious platform: our students showcased their coding and problem-solving skills against top young minds at the NUST programming competition.", img: "pictures/optimized/eap12.jpeg", cap: "Competition" },
-                { text: "Excellence in action: earning a proud spot in the top 10 finalists, reflecting our students' dedication, technical training, and competitive edge.", img: "pictures/optimized/eap13.jpeg", cap: "Finalists" }
+                { text: "Competing on a prestigious platform: our students showcased their coding and problem-solving skills against top young minds at the NUST programming competition.", img: "pictures/optimized/eap12.webp", cap: "Competition" },
+                { text: "Excellence in action: earning a proud spot in the top 10 finalists, reflecting our students' dedication, technical training, and competitive edge.", img: "pictures/optimized/eap13.webp", cap: "Finalists" }
             ]
         },
         
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
          details: [
          {
             text: "Celebrating innovation in Artificial Intelligence: her AI-based project was selected among 500+ entries from across Pakistan, earning recognition for its creativity, technical contribution, and real-world potential.",
-            img: "pictures/optimized/indus2.webp",
+            img: "pictures/optimized/Indus2.webp",
             cap: "National Recognition"
          },
          {
