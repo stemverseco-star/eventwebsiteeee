@@ -109,17 +109,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // 4. AUTOMATIC LOGO CLONER FOR GAPLESS LOOP
     // ==========================================================================
-    const logoTrack = document.querySelector('.logo-track');
-    if (logoTrack) {
-        const originalLogos = Array.from(logoTrack.children);
-        originalLogos.forEach(logo => {
-            const clone = logo.cloneNode(true);
-            clone.setAttribute('aria-hidden', 'true');
-            logoTrack.appendChild(clone);
-        });
-        console.log("🔄 Partner logos duplicated for infinite loop.");
-    }
- 
+  window.addEventListener('load', () => {
+  const track = document.querySelector('.logo-track');
+  if (!track) return;
+
+  const originals = Array.from(track.children);
+  const SPEED = 50; // pixels per second
+
+  // Width of one set of 12 logos
+  const setWidth = track.scrollWidth;
+
+  // How many sets are needed to fill the widest possible screen
+  const N = Math.max(1, Math.ceil(Math.max(window.screen.width, window.innerWidth) / setWidth));
+
+  // Track = two identical halves of N sets each (originals are the first set)
+  for (let i = 0; i < 2 * N - 1; i++) {
+    originals.forEach(item => {
+      const clone = item.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelector('img').alt = '';
+      track.appendChild(clone);
+    });
+  }
+
+  // Constant speed regardless of how many copies there are
+  track.style.animationDuration = (setWidth * N) / SPEED + 's';
+});
     // ==========================================================================
     // 5. MOBILE NAVIGATION — VERTICAL SIDEBAR FROM THE LEFT
     // ==========================================================================
@@ -242,71 +257,71 @@ document.addEventListener('DOMContentLoaded', () => {
             kicker: "STEMverse",
             logo: "SEE Pakistan 2026 World Startup Championship",
             quote: "Out of 4,000+ applicants, STEMverse proved that the future of education is already here.",
-            cover: "pictures/seepakistan6.jpeg",
+            cover: "pictures/optimized/seepakistan6.webp",
             badge: "",
             details: [
-                { text: "Judges praised our hands-on model for bridging traditional classrooms with the modern tech economy. ", img: "pictures/seepakistan8.jpeg", cap: "Demonstration" },
-                { text: "Ranked in the Top 100 of 4,000+ applicants at SEE Pakistan 2026.", img: "pictures/seepakistan4.jpeg", cap: "Pitch" }
+                { text: "Judges praised our hands-on model for bridging traditional classrooms with the modern tech economy. ", img: "pictures/optimized/seepakistan8.webp", cap: "Demonstration" },
+                { text: "Ranked in the Top 100 of 4,000+ applicants at SEE Pakistan 2026.", img: "pictures/optimized/seepakistan4.webp", cap: "Pitch" }
             ]
         },
         {
             kicker: "STEMverse",
             logo: "Indus RAS Expo 2026",
             quote: "Demonstrating next-gen educational robotics and automation, STEMverse stood out as a major crowd puller at Indus RAS Expo.",
-            cover: "pictures/rasexpo1.jpeg",
+            cover: "pictures/optimized/rasexpo1.webp",
             details: [
-                { text: "Visitors experienced our interactive STEM labs firsthand, showcasing how automation and robotics are revolutionizing modern learning.", img: "pictures/rasexpo4.jpeg", cap: "Interaction" },
-                { text: "STEMverse CEO Mashaal Jawad took center stage in the main panel talk, sharing visionary insights on the future of EdTech, robotics, and skill development in Pakistan.", img: "pictures/rasexpo6.jpeg", cap: "Panel talk" }
+                { text: "Visitors experienced our interactive STEM labs firsthand, showcasing how automation and robotics are revolutionizing modern learning.", img: "pictures/optimized/rasexpo4.webp", cap: "Interaction" },
+                { text: "STEMverse CEO Mashaal Jawad took center stage in the main panel talk, sharing visionary insights on the future of EdTech, robotics, and skill development in Pakistan.", img: "pictures/optimized/rasexpo6.webp", cap: "Panel talk" }
             ]
         },
         {
             kicker: "STEMverse",
             logo: "Canva Community Peshawar x STEMverse",
             quote: "Empowering the next generation of creators with cutting-edge AI tools and hands-on website building skills.",
-            cover: "pictures/canvaevent1.jpeg",
+            cover: "pictures/optimized/canvaevent1.webp",
             details: [
-                { text: "Hands-on workshops led by STEMverse and Canva Community Peshawar, teaching students and creators how to leverage AI for rapid design and content creation.", img: "pictures/canvaevent4.jpeg", cap: "innovation" },
-                { text: "Participants built live, fully-functional websites from scratch, combining modern web development fundamentals with smart automation tools.", img: "pictures/canvaevent3.jpeg", cap: "Learning" }
+                { text: "Hands-on workshops led by STEMverse and Canva Community Peshawar, teaching students and creators how to leverage AI for rapid design and content creation.", img: "pictures/optimized/canvaevent4.webp", cap: "innovation" },
+                { text: "Participants built live, fully-functional websites from scratch, combining modern web development fundamentals with smart automation tools.", img: "pictures/optimized/canvaevent3.webp", cap: "Learning" }
             ]
         },
         {
             kicker: "STEMverse",
             logo: "STEMverse Summer Exhibition ",
             quote: "From young innovators building their first projects to future professionals launching technical careers, STEMverse is shaping tomorrow's tech leaders.",
-            cover: "pictures/exhibition1.jpeg",
+            cover: "pictures/optimized/exhibition1.webp",
             details: [
-                { text: "Empowering teens early: our dedicated internship program provided Matric and O-Level students with real-world exposure to technical skills, engineering, and project building.", img: "pictures/exhibition2.jpeg", cap: "Internship camp students" },
-                { text: "Displaying innovative projects built by our students, showcasing how they apply foundational tech and coding skills to create real-world solutions.", img: "pictures/exhibition4.jpeg", cap: "exhibition" }
+                { text: "Empowering teens early: our dedicated internship program provided Matric and O-Level students with real-world exposure to technical skills, engineering, and project building.", img: "pictures/optimized/exhibition2.webp", cap: "Internship camp students" },
+                { text: "Displaying innovative projects built by our students, showcasing how they apply foundational tech and coding skills to create real-world solutions.", img: "pictures/optimized/exhibition4.webp", cap: "exhibition" }
             ]
         },
         {
             kicker: "STEMverse",
-            logo: "STEMverse School Summer Camp Exhibition ",
-            quote: "Collaborating with Forward School and Pak-Turk to host vibrant summer camp exhibitions, showcasing young minds building their first tech projects and exploring the world of science",
-            cover: "pictures/forward1.JPG",
+            logo: "School Summer Camp Exhibition",
+            quote: "Teaming up with Forward School and Pak-Turk to showcase young minds building their first tech projects.",
+            cover: "pictures/optimized/forward1.webp",
             details: [
-                { text: "Forward School partnership: displaying creative student projects and interactive coding models crafted during our specialized summer camp exhibition.", img: "pictures/forward2.jpeg", cap: "Creation" },
-                { text: "Pak-Turk collaboration: celebrating early curiosity and hands-on learning as students present their foundational engineering and problem-solving solutions.", img: "pictures/pakturk1.jpeg", cap: "Students presentation" }
+                { text: "Forward School partnership: displaying creative student projects and interactive coding models crafted during our specialized summer camp exhibition.", img: "pictures/optimized/forward2.webp", cap: "Creation" },
+                { text: "Pak-Turk collaboration: celebrating early curiosity and hands-on learning as students present their foundational engineering and problem-solving solutions.", img: "pictures/optimized/pakturk1.webp", cap: "Students presentation" }
             ]
         },
         {
             kicker: "STEMverse",
             logo: "OIC 9th Ministeral Conference on Women.",
             quote: "Empowering young women in STEM builds a sustainable global future by driving innovation and leadership from an early age. ",
-            cover: "pictures/oic1.jpeg",
+            cover: "pictures/optimized/oic1.webp",
             details: [
-                { text: "Presenting grassroots STEMverse initiatives to international delegates at the OIC 9th Conference.", img: "pictures/oic2.jpeg", cap: "Networking" },
-                { text: "Displaying student built tech projects to demonstrate early practical learning in coding and engineering.", img: "pictures/oic3.jpeg", cap: "Innovation" }
+                { text: "Presenting grassroots STEMverse initiatives to international delegates at the OIC 9th Conference.", img: "pictures/optimized/oic2.webp", cap: "Networking" },
+                { text: "Displaying student built tech projects to demonstrate early practical learning in coding and engineering.", img: "pictures/optimized/oic3.webp", cap: "Innovation" }
             ]
         },
         {
             kicker: "STEMverse",
             logo: "NUST Programming Competition",
             quote: "Celebrating our young coders as they competed among the best at NUST, proving their technical prowess and securing a spot in the top 10 finalists.",
-            cover: "pictures/eap11.jpeg",
+            cover: "pictures/optimized/eap11.webp",
             details: [
-                { text: "Competing on a prestigious platform: our students showcased their coding and problem-solving skills against top young minds at the NUST programming competition.", img: "pictures/eap12.jpeg", cap: "Competition" },
-                { text: "Excellence in action: earning a proud spot in the top 10 finalists, reflecting our students' dedication, technical training, and competitive edge.", img: "pictures/eap13.jpeg", cap: "Finalists" }
+                { text: "Competing on a prestigious platform: our students showcased their coding and problem-solving skills against top young minds at the NUST programming competition.", img: "pictures/optimized/eap12.jpeg", cap: "Competition" },
+                { text: "Excellence in action: earning a proud spot in the top 10 finalists, reflecting our students' dedication, technical training, and competitive edge.", img: "pictures/optimized/eap13.jpeg", cap: "Finalists" }
             ]
         },
         
@@ -314,36 +329,36 @@ document.addEventListener('DOMContentLoaded', () => {
             kicker: "STEMverse",
             logo: "STEMverse & SAHA Partnership",
             quote: "MoU signing with SAHA to strengthen STEM education in schools and expand hands-on learning opportunities for students.",
-            cover: "pictures/mou1.jpeg",
+            cover: "pictures/optimized/mou1.webp",
             details: [
-                { text: "Formalizing strategic alliances: signing an MoU with SAHA to expand hands-on learning opportunities and strengthen STEM education in schools.", img: "pictures/mou2.jpeg", cap: "Partnership" },
-                { text: "Expanding educational horizons: building collaborative frameworks to bring advanced technical training and practical engineering to more students.", img: "pictures/mou3.jpeg", cap: "Agreement" }
+                { text: "Formalizing strategic alliances: signing an MoU with SAHA to expand hands-on learning opportunities and strengthen STEM education in schools.", img: "pictures/optimized/mou2.webp", cap: "Partnership" },
+                { text: "Expanding educational horizons: building collaborative frameworks to bring advanced technical training and practical engineering to more students.", img: "pictures/optimized/mou3.webp", cap: "Agreement" }
             ]
         },
         {
             kicker: "STEMverse",
             logo: "Khyber Pakhtunkhwa Youth Excellence Award 2026",
-            quote: "Honored to have our CEO & Founder Mashaal Jawad receive the Khyber Pakhtunkhwa Youth Excellence Award 2026 for advancing STEM and technology education.",
-            cover: "pictures/award1.jpeg",
+            quote: "Our CEO & Founder Mashaal Jawad received the Khyber Pakhtunkhwa Youth Excellence Award 2026 for advancing STEM education.",
+            cover: "pictures/optimized/award1.webp",
             details: [
-                { text: "Honoring leadership: recognizing our CEO & Founder's efforts in strengthening STEM and technology education across Khyber Pakhtunkhwa.", img: "pictures/award2.jpeg", cap: "CEO/Founder Mashaal Jawad" },
-                { text: "Provincial impact: celebrating this milestone presented by the Directorate of Youth Affairs KPK at the University of Peshawar.", img: "pictures/award3.jpeg", cap: "Milestone" }
+                { text: "Honoring leadership: recognizing our CEO & Founder's efforts in strengthening STEM and technology education across Khyber Pakhtunkhwa.", img: "pictures/optimized/award2.webp", cap: "CEO/Founder Mashaal Jawad.", img: "pictures/award2.jpeg", cap: "CEO/Founder Mashaal Jawad" },
+                { text: "Provincial impact: celebrating this milestone presented by the Directorate of Youth Affairs KPK at the University of Peshawar.", img: "pictures/optimized/award3.webp", cap: "Milestone" }
             ]
         },
         {
          kicker: "STEMverse",
          logo: "Indus AI Week",
          quote: "Recognized with the Women in Tech Award at Indus AI Week for an outstanding AI-based project, selected from 500+ entries nationwide.",
-         cover: "pictures/indus1.jpeg",
+         cover: "pictures/optimized/indus1.webp",
          details: [
          {
             text: "Celebrating innovation in Artificial Intelligence: her AI-based project was selected among 500+ entries from across Pakistan, earning recognition for its creativity, technical contribution, and real-world potential.",
-            img: "pictures/indus2.jpeg",
+            img: "pictures/optimized/indus2.webp",
             cap: "National Recognition"
          },
          {
             text: "Honoring women in technology: she received the Women in Tech Award at Indus AI Week, highlighting her contribution to innovation and the growing role of women in Artificial Intelligence.",
-            img: "pictures/indus3.jpeg",
+            img: "pictures/optimized/indus3.webp",
             cap: "Women in Tech"
         }
     ]
@@ -352,186 +367,190 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add a 4th, 5th, etc. object here — they'll automatically form page 2, page 3, ...
     ];
  
+    // 3 cards per page on every screen. On phones the 3 cards of the current
+    // page sit in a swipe row, and the arrows/dots go to the other pages.
     const spotlightPerPage = 3;
-    const spotlightSlotConfig = [
-        { cls: "card-a", badgeCls: "", badgeLabel: "", reveal: "left", delay: "0" },
-        { cls: "card-b", badgeCls: "", badgeLabel: "", reveal: "pop", delay: "1" },
-        { cls: "card-c", badgeCls: "", badgeLabel: "", reveal: "right", delay: "2" }
-    ];
- 
-    const spotlightGridEl = document.getElementById("spotlightGrid");
-    const spotlightPrevBtn = document.getElementById("spotlightPrev");
-    const spotlightNextBtn = document.getElementById("spotlightNext");
-    const spotlightDotsWrap = document.getElementById("spotlightDots");
- 
-    if (spotlightGridEl && spotlightPrevBtn && spotlightNextBtn && spotlightDotsWrap) {
- 
-        const spotlightPageCount = Math.ceil(pressData.length / spotlightPerPage);
-        let spotlightPage = 0;
- 
-        function buildSpotlightCard(item, slot, uid) {
-            const detailId = `spotlight-detail-${uid}`;
-            const detailsHTML = item.details.map(d => `
-                <div class="detail-row">
-                    <p class="detail-text">${d.text}</p>
-                    <div class="polaroid">
-                        <img src="${d.img}" alt="" loading="lazy">
-                        <span class="polaroid-cap">${d.cap}</span>
+const spotlightSlotConfig = [
+    { cls: "card-a", badgeCls: "", badgeLabel: "", reveal: "left",  delay: "0" },
+    { cls: "card-b", badgeCls: "", badgeLabel: "", reveal: "pop",   delay: "1" },
+    { cls: "card-c", badgeCls: "", badgeLabel: "", reveal: "right", delay: "2" }
+];
+
+const spotlightGridEl   = document.getElementById("spotlightGrid");
+const spotlightPrevBtn  = document.getElementById("spotlightPrev");
+const spotlightNextBtn  = document.getElementById("spotlightNext");
+const spotlightDotsWrap = document.getElementById("spotlightDots");
+
+if (spotlightGridEl && spotlightPrevBtn && spotlightNextBtn && spotlightDotsWrap) {
+
+    const spotlightPageCount = Math.ceil(pressData.length / spotlightPerPage);
+    let spotlightPage = 0;
+    const stackedQuery = window.matchMedia("(max-width: 900px)");
+
+    function buildSpotlightCard(item, slot, uid) {
+        const detailId = `spotlight-detail-${uid}`;
+        const detailsHTML = item.details.map(d => `
+            <div class="detail-row">
+                <p class="detail-text">${d.text}</p>
+                <div class="polaroid">
+                    <img src="${d.img}" alt="" loading="lazy">
+                    <span class="polaroid-cap">${d.cap}</span>
+                </div>
+            </div>`).join("");
+
+        return `
+            <article class="spotlight-card ${slot.cls}" data-reveal="${slot.reveal}" data-reveal-delay="${slot.delay}">
+                <span class="spotlight-badge ${slot.badgeCls}">${slot.badgeLabel}</span>
+
+                <div class="press-thumb">
+                    <img src="${item.cover}" alt="" loading="lazy">
+                </div>
+
+                <p class="press-kicker">${item.kicker}</p>
+                <div class="press-logo">${item.logo}</div>
+                <p class="press-quote">"${item.quote}"</p>
+
+                <button class="expand-toggle" type="button" aria-expanded="false" aria-controls="${detailId}">
+                    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                    <span class="sr-only">Show more about this feature</span>
+                </button>
+
+                <div class="expand-wrap" id="${detailId}">
+                    <div class="expand-inner">
+                        <div class="expand-fill">${detailsHTML}</div>
                     </div>
-                </div>`).join("");
- 
-            return `
-                <article class="spotlight-card ${slot.cls}" data-reveal="${slot.reveal}" data-reveal-delay="${slot.delay}">
-                    <span class="spotlight-badge ${slot.badgeCls}">${slot.badgeLabel}</span>
- 
-                    <div class="press-thumb">
-                        <img src="${item.cover}" alt="" loading="lazy">
-                    </div>
- 
-                    <p class="press-kicker">${item.kicker}</p>
-                    <div class="press-logo">${item.logo}</div>
-                    <p class="press-quote">"${item.quote}"</p>
- 
-                    <button class="expand-toggle" type="button" aria-expanded="false" aria-controls="${detailId}">
-                        <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                        <span class="sr-only">Show more about this feature</span>
-                    </button>
- 
-                    <div class="expand-wrap" id="${detailId}">
-                        <div class="expand-inner">${detailsHTML}</div>
-                    </div>
-                </article>`;
-        }
- 
-        function renderSpotlightPage() {
-            spotlightGridEl.innerHTML = "";
-            for (let i = 0; i < spotlightPerPage; i++) {
-                const dataIdx = spotlightPage * spotlightPerPage + i;
-                
-                // Check if an item exists for this slot. If not, render an empty/placeholder slot to keep layout clean.
-                if (dataIdx < pressData.length) {
-                    const item = pressData[dataIdx];
-                    spotlightGridEl.insertAdjacentHTML("beforeend", buildSpotlightCard(item, spotlightSlotConfig[i], `${spotlightPage}-${i}`));
-                } else {
-                    // Leaves the remaining grid slots empty instead of looping back to the start
-                    spotlightGridEl.insertAdjacentHTML("beforeend", `<div class="spotlight-card empty-slot ${spotlightSlotConfig[i].cls}" style="visibility: hidden; pointer-events: none;"></div>`);
-                }
-            }
-            revealElements(spotlightGridEl.querySelectorAll('[data-reveal]'));
-            updateSpotlightDots();
-            updateSpotlightNavButtons();
-        }
- 
-        function updateSpotlightDots() {
-            spotlightDotsWrap.innerHTML = "";
-            for (let p = 0; p < spotlightPageCount; p++) {
-                const dot = document.createElement("span");
-                dot.className = "spotlight-dot" + (p === spotlightPage ? " is-active" : "");
-                spotlightDotsWrap.appendChild(dot);
+                </div>
+            </article>`;
+    }
+
+    /* Give every details panel on this page the height of the tallest one */
+    function syncDetailHeights() {
+        const fills = spotlightGridEl.querySelectorAll(".expand-fill");
+        fills.forEach(f => { f.style.minHeight = ""; });
+
+        // Stacked mobile layout: cards are in one column, no need to match
+        if (stackedQuery.matches) return;
+
+        let max = 0;
+        fills.forEach(f => { max = Math.max(max, f.offsetHeight); });
+        fills.forEach(f => { f.style.minHeight = max + "px"; });
+    }
+
+    function renderSpotlightPage() {
+        spotlightGridEl.innerHTML = "";
+        for (let i = 0; i < spotlightPerPage; i++) {
+            const dataIdx = spotlightPage * spotlightPerPage + i;
+            // i % 3 so the phone row (more than 3 cards) reuses the 3 slot styles
+            const slot = spotlightSlotConfig[i % spotlightSlotConfig.length];
+
+            if (dataIdx < pressData.length) {
+                const item = pressData[dataIdx];
+                spotlightGridEl.insertAdjacentHTML("beforeend", buildSpotlightCard(item, slot, `${spotlightPage}-${i}`));
+            } else {
+                spotlightGridEl.insertAdjacentHTML("beforeend", `<div class="spotlight-card empty-slot ${slot.cls}" style="visibility: hidden; pointer-events: none;"></div>`);
             }
         }
- 
-        function updateSpotlightNavButtons() {
-            // Disable buttons at boundaries instead of infinite loop
-            spotlightPrevBtn.disabled = spotlightPage === 0;
-            spotlightNextBtn.disabled = spotlightPage >= spotlightPageCount - 1;
-            
-            // Optional: style disabled buttons visually if you have CSS for it
-            spotlightPrevBtn.style.opacity = spotlightPage === 0 ? "0.5" : "1";
-            spotlightNextBtn.style.opacity = spotlightPage >= spotlightPageCount - 1 ? "0.5" : "1";
-        }
- 
-        spotlightPrevBtn.addEventListener("click", () => {
-            if (spotlightPage > 0) {
-                spotlightPage--;
-                renderSpotlightPage();
-            }
-        });
- 
-        spotlightNextBtn.addEventListener("click", () => {
-            if (spotlightPage < spotlightPageCount - 1) {
-                spotlightPage++;
-                renderSpotlightPage();
-            }
-        });
- 
+        syncDetailHeights();
+        revealElements(spotlightGridEl.querySelectorAll('[data-reveal]'));
+        updateSpotlightDots();
+        updateSpotlightNavButtons();
+    }
+
+    /* Re-render without letting the page jump when the section height changes */
+    function changeSpotlightPage(newPage) {
+        const before = spotlightNextBtn.getBoundingClientRect().top;
+        spotlightPage = newPage;
         renderSpotlightPage();
-    } else {
-        console.warn("⚠️ Spotlight Warning: Couldn't find spotlight grid/nav elements in HTML.");
+        const shift = spotlightNextBtn.getBoundingClientRect().top - before;
+        if (shift) window.scrollBy({ top: shift, left: 0, behavior: "instant" });
     }
-});
-document.addEventListener('DOMContentLoaded', () => {
- 
-  var section = document.getElementById('experience');
- 
-  if (!section) {
-    console.warn("⚠️ Experience section not found — check that your section has id=\"experience\".");
-    return;
-  }
- 
-  var animated = false;
- 
-  function animateBars(){
-    if (animated) return;
-    animated = true;
- 
-    var skills = section.querySelectorAll('.skill');
- 
-    if (!skills.length) {
-      console.warn("⚠️ No .skill elements found inside #experience — check your HTML markup.");
-      return;
-    }
- 
-    skills.forEach(function(skill){
-      var target = parseInt(skill.getAttribute('data-percent'), 10);
-      var fill = skill.querySelector('.skill__fill');
-      var label = skill.querySelector('.skill__percent');
-      var suffix = skill.getAttribute('data-suffix') || ''; // e.g. "+"
- 
-      if (isNaN(target) || !fill || !label) {
-        console.warn("⚠️ A .skill element is missing data-percent, .skill__fill, or .skill__percent.", skill);
-        return;
-      }
- 
-      // bar still fills based on percentage width — this part is unchanged
-      var barWidth = Math.min(target, 100);
-     requestAnimationFrame(function(){
-      fill.style.width = barWidth + '%';
-     });
- 
-      // number counts up but displays as a plain number, no % sign
-      var duration = 1200; // ms, matches the CSS transition on .skill__fill
-      var startTime = null;
- 
-      function step(timestamp){
-        if (!startTime) startTime = timestamp;
-        var progress = Math.min((timestamp - startTime) / duration, 1);
-        var current = Math.round(progress * target);
-       label.textContent = current.toLocaleString() + (progress === 1 ? suffix : ''); // <-- no '%' appended anymore
-        if (progress < 1){
-          requestAnimationFrame(step);
+
+    function updateSpotlightDots() {
+        spotlightDotsWrap.innerHTML = "";
+        for (let p = 0; p < spotlightPageCount; p++) {
+            const dot = document.createElement("span");
+            dot.className = "spotlight-dot" + (p === spotlightPage ? " is-active" : "");
+            spotlightDotsWrap.appendChild(dot);
         }
-      }
-      requestAnimationFrame(step);
+    }
+
+    function updateSpotlightNavButtons() {
+        spotlightPrevBtn.disabled = spotlightPage === 0;
+        spotlightNextBtn.disabled = spotlightPage >= spotlightPageCount - 1;
+        spotlightPrevBtn.style.opacity = spotlightPage === 0 ? "0.5" : "1";
+        spotlightNextBtn.style.opacity = spotlightPage >= spotlightPageCount - 1 ? "0.5" : "1";
+    }
+
+    spotlightPrevBtn.addEventListener("click", () => {
+        if (spotlightPage > 0) changeSpotlightPage(spotlightPage - 1);
     });
-  }
- 
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){
-          animateBars();
-          observer.disconnect(); // only ever run once
-        }
-      });
-    }, { threshold: 0.3 });
- 
-    observer.observe(section);
-  } else {
-    animateBars();
-  }
- 
+
+    spotlightNextBtn.addEventListener("click", () => {
+        if (spotlightPage < spotlightPageCount - 1) changeSpotlightPage(spotlightPage + 1);
+    });
+
+    // Re-measure when the window resizes or web fonts finish loading
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(syncDetailHeights, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncDetailHeights);
+
+    renderSpotlightPage();
+} else {
+    console.warn("⚠️ Spotlight Warning: Couldn't find spotlight grid/nav elements in HTML.");
+}
 });
- 
+
+(function initSkills() {
+  function start() {
+    const skills = document.querySelectorAll('.skill');
+    console.log('Skills found:', skills.length);
+    if (!skills.length) return;
+
+    function animateSkill(skill) {
+      if (skill.dataset.done) return;
+      skill.dataset.done = '1';
+
+      const target = parseInt(String(skill.dataset.percent).replace(/[^0-9]/g, ''), 10) || 0;
+      const suffix = skill.dataset.suffix || '';
+      const fill = parseFloat(skill.dataset.fill) || 80;
+      const number = skill.querySelector('.skill__percent');
+      const bar = skill.querySelector('.skill__fill');
+      const duration = 1500;
+      let startTime = null;
+
+      bar.style.width = fill + '%';
+
+      function tick(now) {
+        if (startTime === null) startTime = now;
+        const p = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        number.textContent = Math.round(target * eased).toLocaleString() + (p === 1 ? suffix : '');
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const section = document.getElementById('experience');
+    if ('IntersectionObserver' in window && section) {
+      new IntersectionObserver((entries, obs) => {
+        if (entries[0].isIntersecting) {
+          skills.forEach(animateSkill);
+          obs.disconnect();
+        }
+      }, { threshold: 0 }).observe(section);
+    } else {
+      skills.forEach(animateSkill);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();

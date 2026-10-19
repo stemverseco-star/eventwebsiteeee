@@ -26,7 +26,7 @@ body{
 ========================== */
 
 .navbar{
-  background-color: #003c71;
+    background-color: #003c71;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -181,12 +181,13 @@ body{
 /* ==========================
    FOOTER
 ========================== */
+
 .partners-footer {
-    background: #0B4A82; /* UPDATED: Deep Purple Background */
+    background: #0B4A82;
     padding: 30px 0;
     width: 100%;
-    overflow: hidden; 
-    border-top: 3px solid #FFC107; /* Updated to Gold to pop against the purple */
+    overflow: hidden;
+    border-top: 3px solid #FFC107;
     text-align: center;
 }
 
@@ -195,7 +196,7 @@ body{
     margin-bottom: 20px;
     font-weight: 800;
     letter-spacing: 8px;
-    color: #E0B0FF; /* Updated to a concrete Mauve/Lavender hex so it is visible */
+    color: #E0B0FF;
 }
 
 /* The window through which logos move */
@@ -208,7 +209,7 @@ body{
 /* THE MOVING PART */
 .logo-track {
     display: flex;
-    width: calc(200px * 10); 
+    width: calc(200px * 10);
     animation: slideLogos 50s linear infinite;
 }
 
@@ -216,22 +217,22 @@ body{
 .logo-slider:active .logo-track,
 .logo-slider:focus .logo-track {
     animation-play-state: paused;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .logo-track img {
-    width: 120px;            
-    height: 120px;           
-    flex-shrink: 0;          
-    aspect-ratio: 1 / 1;     
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
 
-    object-fit: contain;     
-    padding: 15px;           
-    background-color: white; 
-    
-    border-radius: 50%;      
-    border: 3px solid #f7BA06; 
-    
+    object-fit: contain;
+    padding: 15px;
+    background-color: white;
+
+    border-radius: 50%;
+    border: 3px solid #f7BA06;
+
     margin: 0 30px;
     opacity: 0.9;
     transition: transform 0.3s ease, border-color 0.3s ease;
@@ -239,7 +240,7 @@ body{
 
 .logo-track img:hover {
     transform: scale(1.1);
-    border-color: #00FFFF; /* Replaced variable with standard Neon Cyan hex */
+    border-color: #00FFFF;
     opacity: 1;
 }
 
@@ -276,26 +277,236 @@ body{
         transform:translateX(-50%);
     }
 }
-@media (max-width: 600px) {
-    .navbar {
-        /* Keep it stacked, but align everything to the left */
-        height: auto;
-        padding: 15px;
-        flex-direction: column; /* Stacks logo on top of links */
-        gap: 10px;
+
+/* ==========================================================
+   MOBILE UPGRADE (screens under 768px)
+   Desktop styles above are NOT modified.
+========================================================== */
+
+/* Hidden on desktop; only shown inside the mobile query below */
+.nav-toggle,
+.nav-backdrop{
+    display:none;
+}
+
+@media (max-width:767px){
+
+    /* ---------- Global safety ---------- */
+    html,
+    body{
+        overflow-x:hidden;
+        max-width:100%;
     }
 
-    .nav-left {
-        /* Aligns your logo and links to the start of the container */
-        align-items: flex-start; 
-        width: 100%;
+    img{
+        max-width:100%;
     }
 
-    .nav-links {
-        /* Ensures links are also pushed to the left */
-        justify-content: flex-start; 
-        width: 100%;
+    body.menu-open{
+        overflow:hidden; /* lock page scroll while drawer is open */
+    }
+
+    /* ---------- NAVBAR: single row, never stacks ---------- */
+    .navbar{
+        height:64px;
+        padding:0 18px;
+        flex-direction:row;
+        align-items:center;
+        gap:0;
+        box-shadow:0 4px 18px rgba(0,0,0,.15);
+    }
+
+    .nav-left{
+        width:auto;
+        gap:0;
+        align-items:center;
+    }
+
+    .logo{
+        font-size:1.6rem;
+        display:flex;
+        align-items:center;
+        min-height:44px;
+    }
+
+    /* ---------- Hamburger button (44x44 touch target) ---------- */
+    .nav-toggle{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        gap:5px;
+        width:44px;
+        height:44px;
+        padding:0;
+        border:0;
+        border-radius:12px;
+        background:rgba(255,255,255,.12);
+        cursor:pointer;
+        position:relative;
+        z-index:2;
+        -webkit-tap-highlight-color:transparent;
+    }
+
+    .nav-toggle span{
+        display:block;
+        width:20px;
+        height:2px;
+        border-radius:2px;
+        background:#fff;
+        transition:transform .3s ease, opacity .2s ease;
+    }
+
+    /* Burger -> X */
+    .nav-toggle.is-open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .nav-toggle.is-open span:nth-child(2){ opacity:0; }
+    .nav-toggle.is-open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+    /* ---------- Slide-out drawer ---------- */
+    .nav-links{
+        position:fixed;
+        top:0;
+        right:0;
+        z-index:1;
+        width:min(82%,320px);
+        height:100vh;
+        height:100dvh;
+        flex-direction:column;
+        justify-content:flex-start;
+        gap:10px;
+        padding:90px 20px 30px;
+        background:#003c71;
+        box-shadow:-12px 0 40px rgba(0,0,0,.3);
+        overflow-y:auto;
+
+        transform:translateX(100%);
+        visibility:hidden;
+        transition:transform .35s ease, visibility 0s linear .35s;
+    }
+
+    .nav-links.open{
+        transform:translateX(0);
+        visibility:visible;
+        transition:transform .35s ease, visibility 0s;
+    }
+
+    /* Links become tappable cards */
+    .nav-link{
+        display:flex;
+        align-items:center;
+        min-height:52px;
+        padding:0 18px;
+        border-radius:14px;
+        font-size:1.05rem;
+        background:rgba(255,255,255,.07);
+    }
+
+    .nav-link::after{
+        display:none;
+    }
+
+    .nav-link:hover,
+    .nav-link:active{
+        background:rgba(255,210,63,.18);
+        color:#FFD23F;
+    }
+
+    /* Dim overlay behind the drawer */
+    .nav-backdrop{
+        display:block;
+        position:fixed;
+        inset:0;
+        z-index:999;
+        background:rgba(8,27,41,.55);
+        opacity:0;
+        pointer-events:none;
+        transition:opacity .3s ease;
+    }
+
+    .nav-backdrop.is-visible{
+        opacity:1;
+        pointer-events:auto;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero-container{
+        min-height:100vh;
+        min-height:100svh;
+        padding:100px 20px 60px;
+    }
+
+    .brand-badge{
+        padding:10px 22px;
+        margin-bottom:22px;
+        font-size:.85rem;
+        box-shadow:0 6px 16px rgba(0,0,0,.1);
+    }
+
+    .hero-title{
+        font-size:clamp(2.1rem, 9vw, 2.8rem);
+        line-height:1.15;
+        margin-bottom:16px;
+        word-break:break-word;
+    }
+
+    .hero-subtitle{
+        font-size:1rem;
+        line-height:1.7;
+        margin:0 auto 32px;
+    }
+
+    /* ---------- BUTTONS: full-width, stacked ---------- */
+    .cta-group{
+        flex-direction:column;
+        align-items:stretch;
+        gap:14px;
+        width:100%;
+    }
+
+    .cta-btn{
+        justify-content:center;
+        min-height:52px;
+        padding:14px 24px;
+        width:100%;
+    }
+
+    .primary-btn{
+        box-shadow:0 8px 18px rgba(11,74,130,.25);
+    }
+
+    /* ---------- FOOTER / LOGO SLIDER ---------- */
+    .partners-footer{
+        padding:24px 0;
+    }
+
+    .footer-label{
+        font-size:.8rem;
+        letter-spacing:4px;
+        margin-bottom:16px;
+    }
+
+    .logo-track{
+        width:calc(110px * 10);
+        animation:slideLogosMobile 40s linear infinite;
+    }
+
+    .logo-track img{
+        width:80px;
+        height:80px;
+        padding:10px;
+        margin:0 15px; /* 80 + 30 = 110px per item */
+    }
+
+    /* Mobile-sized loop distance (5 logos x 110px) */
+    @keyframes slideLogosMobile{
+        0%   { transform:translateX(0); }
+        100% { transform:translateX(calc(-110px * 5)); }
     }
 }
 
-
+/* Very small phones (iPhone SE, small Androids) */
+@media (max-width:380px){
+    .logo{ font-size:1.4rem; }
+    .hero-container{ padding:90px 16px 50px; }
+    .hero-subtitle{ font-size:.95rem; }
+}
