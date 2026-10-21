@@ -17,6 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="hero-video.js" defer></script>
 </head>
 <body>
 
@@ -46,16 +47,13 @@
 
     <main class="content-wrapper-spacer">
         <section class="video-container">
-  <!-- Blurred background copy -->
-  <video class="video-bg" autoplay muted loop playsinline aria-hidden="true">
-    <source src="pictures/stemverse-web.mp4" type="video/mp4">
-  </video>
+    <!-- ONE video. The blurred background is created by hero-video.js -->
+    <video class="video-main" autoplay muted loop playsinline preload="auto">
+        <source src="pictures/stemverse-web.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-  <!-- Sharp main video -->
-  <video class="video-main" autoplay muted loop playsinline>
-    <source src="pictures/stemverse-web.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+    <div class="hero-glow" aria-hidden="true"></div>
 </section>
 
   <div class="hero-glow" aria-hidden="true"></div>
