@@ -179,7 +179,8 @@ body{
 }
 
 /* ==========================
-   FOOTER
+   FOOTER / PARTNER LOGOS
+   (FIXED: logos were cropped)
 ========================== */
 
 .partners-footer {
@@ -199,18 +200,36 @@ body{
     color: #E0B0FF;
 }
 
-/* The window through which logos move */
+/* The window through which logos move.
+   Sizes live in two variables so desktop and mobile stay in sync. */
 .logo-slider {
+    --logo-size: 120px;      /* width and height of each round badge */
+    --logo-gap: 30px;        /* empty space on EACH side of a badge   */
+
     width: 100%;
     display: flex;
     overflow: hidden;
+
+    /* FIX 1 (top/bottom): breathing room, so the badge border and the
+       hover zoom are no longer sliced off by the edges of the window. */
+    padding: 18px 0;
+
+    /* FIX 2 (left/right): logos fade out softly at the edges instead of
+       being cut in half by a hard line. */
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
 }
 
-/* THE MOVING PART */
+/* THE MOVING PART
+   Width is now automatic and the loop moves exactly half the track, so it
+   is seamless no matter how many logos there are.
+   (The second half of the track must be an exact copy of the first half.) */
 .logo-track {
     display: flex;
-    width: calc(200px * 10);
-    animation: slideLogos 50s linear infinite;
+    align-items: center;
+    flex: 0 0 auto;
+    width: max-content;
+    animation: scroll 50s linear infinite;
 }
 
 .logo-slider:hover .logo-track,
@@ -220,38 +239,44 @@ body{
     cursor: pointer;
 }
 
+/* FIX 3 (the logo inside the circle):
+   The round badge is now DRAWN by the background (a white disc with a gold
+   ring) instead of by border-radius. border-radius clips whatever is inside
+   an <img>, which is what was cutting the logos. With no border-radius,
+   nothing can crop the artwork. The 22% padding keeps every logo well
+   inside the disc, even square ones. */
 .logo-track img {
-    width: 120px;
-    height: 120px;
-    flex-shrink: 0;
+    --ring: #f7BA06;
+
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    max-width: none;
+    max-height: none;
     aspect-ratio: 1 / 1;
 
+    padding: calc(var(--logo-size) * 0.22);
     object-fit: contain;
-    padding: 15px;
-    background-color: white;
+    object-position: center;
 
-    border-radius: 50%;
-    border: 3px solid #f7BA06;
+    border: 0;
+    border-radius: 0;
+    background: radial-gradient(circle closest-side,
+                #fff calc(100% - 3px),
+                var(--ring) calc(100% - 3px),
+                var(--ring) calc(100% - 0.5px),
+                transparent 100%);
 
-    margin: 0 30px;
+    margin: 0 var(--logo-gap);
     opacity: 0.9;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .logo-track img:hover {
+    --ring: #00FFFF;
     transform: scale(1.1);
-    border-color: #00FFFF;
     opacity: 1;
-}
-
-/* THE MECHANISM */
-@keyframes slideLogos {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-200px * 5));
-    }
 }
 
 /* ==========================
@@ -269,6 +294,7 @@ body{
     }
 }
 
+/* Moves the track by exactly half of itself = one full set of logos */
 @keyframes scroll{
     from{
         transform:translateX(0);
@@ -485,22 +511,16 @@ body{
         margin-bottom:16px;
     }
 
+    /* Smaller badges: only the two variables change. Padding, border,
+       fit and the seamless loop all follow automatically. */
+    .logo-slider{
+        --logo-size:80px;
+        --logo-gap:15px;
+        padding:14px 0;
+    }
+
     .logo-track{
-        width:calc(110px * 10);
-        animation:slideLogosMobile 40s linear infinite;
-    }
-
-    .logo-track img{
-        width:80px;
-        height:80px;
-        padding:10px;
-        margin:0 15px; /* 80 + 30 = 110px per item */
-    }
-
-    /* Mobile-sized loop distance (5 logos x 110px) */
-    @keyframes slideLogosMobile{
-        0%   { transform:translateX(0); }
-        100% { transform:translateX(calc(-110px * 5)); }
+        animation-duration:40s;
     }
 }
 
@@ -509,4 +529,24 @@ body{
     .logo{ font-size:1.4rem; }
     .hero-container{ padding:90px 16px 50px; }
     .hero-subtitle{ font-size:.95rem; }
+}
+
+
+/* ==========================================================
+   NAVBAR: always solid brand blue (#003c71), never dark/see-through
+   !important beats any other rule that was turning it black
+   (for example a "scrolled" style or a see-through background).
+========================================================== */
+.navbar,
+nav.navbar,
+header.navbar,
+.navbar.scrolled,
+.navbar.sticky,
+.navbar.active,
+.navbar.is-scrolled {
+    background: #003c71 !important;
+    background-color: #003c71 !important;
+    opacity: 1 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
 }
